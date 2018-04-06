@@ -1,10 +1,7 @@
-import translate from 'node-google-translate-skidz'
+import axios from 'axios'
 
-const ek = { source: 'en', target: 'ko' }
-const ke = { source: 'ko', target: 'en' }
-
-const tr = async options => (await translate(options)).translation
-const innerRandom = arr => 1 + Math.floor(Math.random() * (arr.length - 2))
+const url = 'https://tr.chalk.pe'
+const tr = async params => (await axios.get(url, { params })).data.translation
 
 function* chunk (array, min, max = min) {
   const clone = array.slice()
@@ -14,24 +11,17 @@ function* chunk (array, min, max = min) {
   }
 }
 
-function swap (array) {
-  const arr = array.slice()
-  if (arr.length >= 4) {
-    const pieces = arr.splice(innerRandom(arr), 1)
-    arr.splice(innerRandom(arr), 0, ...pieces) // exclude first and last
-  }
-  return arr
-}
+const langs = ['ja', 'fr', 'es', 'ru', 'ar', 'zh-cn']
+const lang = () => langs[Math.floor(Math.random() * langs.length)]
 
-export default async (text, swapper = swap) => {
-  const translation = await tr({ text, ...ke  })
-  const words = swapper([...chunk(translation.split(' '), 3, 4)])
-  const tokens = await Promise.all(words.map(text => tr({ text, ...ek })))
+export default async text => {
+  const tokens = [...chunk(text.split(' '), 1, 2)]
 
-  const waldo = tokens.join(' ').replace(/~/g, '')
-  const map = words.map((word, i) => [word, tokens[i]])
+  const waldo = tokens.map(text =>
+    tr({ text, source: 'ko', target: lang() })
+      .then(text => tr({ text, source: 'auto', target: 'ko' })))
 
-  return { translation, words, tokens, map, waldo }
+  return (await Promise.all(waldo)).join(' ').replace(/~/g, '')
 }
 
 // const x = require('./src/api').default
