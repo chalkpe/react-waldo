@@ -3,9 +3,8 @@ import translate from 'node-google-translate-skidz'
 const ek = { source: 'en', target: 'ko' }
 const ke = { source: 'ko', target: 'en' }
 
-async function tr (options) {
-  return (await translate(options)).translation
-}
+const tr = async options => (await translate(options)).translation
+const innerRandom = arr => 1 + Math.floor(Math.random() * (arr.length - 2))
 
 function* chunk (array, min, max = min) {
   const clone = array.slice()
@@ -17,14 +16,16 @@ function* chunk (array, min, max = min) {
 
 function swap (array) {
   const arr = array.slice()
-  const rand = () => 1 + Math.floor(Math.random() * (arr.length - 2))
-  if (arr.length >= 4) arr.splice(rand(), 0, ...arr.splice(rand(), 1))
+  if (arr.length >= 4) {
+    const pieces = arr.splice(innerRandom(arr), 1)
+    arr.splice(innerRandom(arr), 0, ...pieces) // exclude first and last
+  }
   return arr
 }
 
-export default async text => {
+export default async (text, swapper = swap) => {
   const translation = await tr({ text, ...ke  })
-  const words = swap([...chunk(translation.split(' '), 3, 4)])
+  const words = swapper([...chunk(translation.split(' '), 3, 4)])
   const tokens = await Promise.all(words.map(text => tr({ text, ...ek })))
 
   const waldo = tokens.join(' ').replace(/~/g, '')
