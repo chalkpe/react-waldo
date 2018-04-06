@@ -14,7 +14,7 @@ function* chunk (array, min, max = min) {
 const langs = ['zh-cn', 'zh-tw', 'es', 'hi', 'ar', 'pt', 'ru', 'ja', 'de', 'fr']
 
 export default async text => {
-  const tokens = [...chunk(text.split(' '), 1, 3)]
+  const tokens = [...chunk(text.split(' ').filter(x => x.length), 1, 3)]
 
   const sentences = await Promise.all(tokens.map(async token => {
     const language = langs[Math.floor(Math.random() * langs.length)]

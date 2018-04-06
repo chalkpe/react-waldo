@@ -1,4 +1,5 @@
 import '@babel/polyfill'
+import 'bulma/css/bulma.css'
 
 import React from 'react'
 import { render } from 'react-dom'
@@ -9,8 +10,7 @@ import TranslationModel from './models/TranslationModel'
 const model = new TranslationModel()
 
 render(
-  <div>
-    <h1>Waldo</h1>
+  <div className="container">
     <Translation model={model} />
   </div>,
   document.getElementById('app')
