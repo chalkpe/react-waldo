@@ -7,7 +7,7 @@ class Translation extends Component {
     const { model } = this.props
 
     return (<div>
-      <h4>{model.status}</h4>
+      <h2>{model.status}</h2>
 
       <textarea
         value={model.plain}
@@ -20,13 +20,22 @@ class Translation extends Component {
         번역하기
       </button>
 
-      <p>{model.waldo}</p>
+      <p>{model.result.text}</p>
+      <table>
+        <tbody>
+          {model.result.sentences.map(s => <tr>
+            <td>{s.token}</td>
+            <td>{s.language}</td>
+            <td>{s.translated}</td>
+            <td>{s.restored}</td>
+          </tr>)}
+        </tbody>
+      </table>
     </div>)
   }
 
   onTextChange = e => {
-    const { model } = this.props
-    model.plain = e.target.value
+    this.props.model.plain = e.target.value
   }
 }
 

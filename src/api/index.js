@@ -11,17 +11,23 @@ function* chunk (array, min, max = min) {
   }
 }
 
-const langs = ['ja', 'fr', 'es', 'ru', 'ar', 'zh-cn']
-const lang = () => langs[Math.floor(Math.random() * langs.length)]
+const langs = ['zh-cn', 'zh-tw', 'es', 'hi', 'ar', 'pt', 'ru', 'ja', 'de', 'fr']
 
 export default async text => {
-  const tokens = [...chunk(text.split(' '), 1, 2)]
+  const tokens = [...chunk(text.split(' '), 1, 3)]
 
-  const waldo = tokens.map(text =>
-    tr({ text, source: 'ko', target: lang() })
-      .then(text => tr({ text, source: 'auto', target: 'ko' })))
+  const sentences = await Promise.all(tokens.map(async token => {
+    const language = langs[Math.floor(Math.random() * langs.length)]
+    const translated = await tr({ text: token, source: 'ko', target: language })
+    const restored = await tr({ text: translated, source: 'auto', target: 'ko' })
+    return { token, language, translated, restored }
+  }))
 
-  return (await Promise.all(waldo)).join(' ').replace(/~/g, '')
+  return {
+    tokens,
+    sentences,
+    text: sentences.map(s => s.restored).join(' ').replace(/~/g, '')
+  }
 }
 
 // const x = require('./src/api').default

@@ -10,7 +10,7 @@ const model = new TranslationModel()
 
 render(
   <div>
-    <h1>Hello, world!</h1>
+    <h1>Waldo</h1>
     <Translation model={model} />
   </div>,
   document.getElementById('app')

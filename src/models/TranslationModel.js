@@ -3,7 +3,7 @@ import { observable, action, runInAction } from 'mobx'
 
 export default class TranslationModel {
   @observable plain = ''
-  @observable waldo = ''
+  @observable result = { sentences: [], text: '' }
   @observable status = 'done'
 
   @action
@@ -12,10 +12,10 @@ export default class TranslationModel {
     this.status = 'pending'
 
     try {
-      const result = await WaldoAPI(await WaldoAPI(this.plain))
+      const result = await WaldoAPI(this.plain)
       runInAction(() => {
         this.status = 'done'
-        this.waldo = result
+        this.result = result
       })
     } catch (err) {
       console.error(err)
