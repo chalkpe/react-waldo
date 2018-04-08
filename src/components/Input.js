@@ -6,7 +6,7 @@ class Input extends Component {
   render () {
     const { model } = this.props
 
-    return (<div>
+    return [
       <div className="field">
         <textarea
           className="textarea"
@@ -14,7 +14,7 @@ class Input extends Component {
           value={model.plain}
           onChange={this.onTextChange}
         />
-      </div>
+      </div>,
 
       <div className="field">
         <button
@@ -24,7 +24,7 @@ class Input extends Component {
           번역하기
         </button>
       </div>
-    </div>)
+    ]
   }
 
   onTextChange = e => {

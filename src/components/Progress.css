@@ -3,7 +3,11 @@
   top: 0; left: 0; right: 0;
 
   width: 0%;
-  height: 4px;
+  height: 0.5vh;
+
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
   background-color: hsl(171, 100%, 41%);
-  transition: width 0.5s ease;
+
+  transition: width 0.5s ease, opacity 2s ease;
 }

@@ -1,3 +1,5 @@
+import './App.css'
+
 import React, { Component } from 'react'
 import { inject, observer } from 'mobx-react'
 
@@ -10,9 +12,8 @@ class App extends Component {
   render () {
     const { model } = this.props
 
-    return (<div>
-      <Progress />
-
+    return [
+      <Progress />,
       <div className="container">
         <section className="section">
           <h1 className="title">Waldo</h1>
@@ -23,7 +24,7 @@ class App extends Component {
 
         <Result />
       </div>
-    </div>)
+    ]
   }
 }
 
