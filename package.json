@@ -21,11 +21,10 @@
     "mobx": "^4.1.1",
     "mobx-react": "^5.0.0",
     "node-google-translate-skidz": "^1.1.1",
+    "noto-sans-kr": "^0.1.1",
     "react": "^16.3.1",
     "react-dom": "^16.3.1",
-    "request": "^2.85.0",
-    "typeface-nanum-square": "^1.1.0",
-    "typeface-noto-sans": "^0.0.54"
+    "request": "^2.85.0"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0-beta.44",

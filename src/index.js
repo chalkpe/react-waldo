@@ -1,5 +1,4 @@
-import 'typeface-noto-sans'
-import 'typeface-nanum-square'
+import 'noto-sans-kr'
 import 'bulma/css/bulma.css'
 
 import '@babel/polyfill'
