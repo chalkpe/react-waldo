@@ -3,15 +3,14 @@ import 'bulma/css/bulma.css'
 
 import React from 'react'
 import { render } from 'react-dom'
+import { Provider } from 'mobx-react'
 
-import Translation from './components/Translation'
+import App from './components/App'
 import TranslationModel from './models/TranslationModel'
 
 const model = new TranslationModel()
 
 render(
-  <div className="container">
-    <Translation model={model} />
-  </div>,
+  <Provider model={model}><App /></Provider>,
   document.getElementById('app')
 )
