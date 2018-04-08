@@ -1,3 +1,7 @@
+* {
+  font-family: 'Noto Sans', 'Nanum Square', sans-serif;
+}
+
 .section + .section {
   padding-top: 0.25rem;
 }

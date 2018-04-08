@@ -1,6 +1,8 @@
-import '@babel/polyfill'
+import 'typeface-noto-sans'
+import 'typeface-nanum-square'
 import 'bulma/css/bulma.css'
 
+import '@babel/polyfill'
 import React from 'react'
 import { render } from 'react-dom'
 import { Provider } from 'mobx-react'
