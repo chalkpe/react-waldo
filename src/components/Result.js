@@ -6,26 +6,35 @@ import { langNames } from '../api/langs'
 class Result extends Component {
   render () {
     const { model } = this.props
-    console.log(model)
 
-    return (<table className="table is-fullwidth is-hoverable">
-      <thead>
-        <tr>
-          <th>원래 문장</th>
-          <th>언어</th>
-          <th>번역된 문장</th>
-          <th>다시 한국어로 번역한 문장</th>
-        </tr>
-      </thead>
-      <tbody>
-        {model.result.sentences.map(s => <tr key={s.token}>
-          <td>{s.token}</td>
-          <td>{langNames[s.language]}</td>
-          <td>{s.translated}</td>
-          <td>{s.restored}</td>
-        </tr>)}
-      </tbody>
-    </table>)
+    return (<div>
+      <section className="section">
+        <h3 className="title is-3">결과</h3>
+        <p className="box">{model.text}</p>
+      </section>
+
+      <section className="section">
+        <h3 className="title is-3">번역 과정</h3>
+        <table className="table is-fullwidth is-hoverable">
+        <thead>
+          <tr>
+            <th>원래 문장</th>
+            <th>언어</th>
+            <th>번역된 문장</th>
+            <th>다시 한국어로 번역한 문장</th>
+          </tr>
+        </thead>
+        <tbody>
+          {model.sentences.map(s => <tr key={s.token}>
+            <td>{s.token}</td>
+            <td>{langNames[s.language]}</td>
+            <td>{s.translated}</td>
+            <td>{s.restored}</td>
+          </tr>)}
+        </tbody>
+      </table>
+      </section>
+    </div>)
   }
 }
 

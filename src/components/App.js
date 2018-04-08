@@ -21,15 +21,7 @@ class App extends Component {
           <Input />
         </section>
 
-        <section className="section">
-          <h3 className="title is-3">결과</h3>
-          <p className="box">{model.result.text}</p>
-        </section>
-
-        <section className="section">
-          <h3 className="title is-3">번역 과정</h3>
-          <Result />
-        </section>
+        <Result />
       </div>
     </div>)
   }

@@ -7,8 +7,9 @@ import { inject, observer } from 'mobx-react'
 class Progress extends Component {
   render () {
     const { model } = this.props
-    return (<div className="Progress" style={{
-      width: model.progress
+    return (<div className="progress" style={{
+      width: (model.progress + '%'),
+      display: model.status !== 'pending' && 'none'
     }}/>)
   }
 }

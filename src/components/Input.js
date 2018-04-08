@@ -7,19 +7,23 @@ class Input extends Component {
     const { model } = this.props
 
     return (<div>
-      <textarea
-        className="textarea"
-        placeholder="번역할 문장을 입력하세요!"
-        value={model.plain}
-        onChange={this.onTextChange}
-      />
+      <div className="field">
+        <textarea
+          className="textarea"
+          placeholder="번역할 문장을 입력하세요!"
+          value={model.plain}
+          onChange={this.onTextChange}
+        />
+      </div>
 
-      <button
-        className={'button is-primary' + (model.status === 'pending' ? ' is-loading' : '')}
-        disabled={model.status === 'pending'}
-        onClick={() => model.computeWaldo()}>
-        번역하기
-      </button>
+      <div className="field">
+        <button
+          className={'button is-primary' + (model.status === 'pending' ? ' is-loading' : '')}
+          disabled={model.status === 'pending'}
+          onClick={() => model.computeWaldo()}>
+          번역하기
+        </button>
+      </div>
     </div>)
   }
 
