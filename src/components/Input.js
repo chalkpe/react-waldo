@@ -7,7 +7,7 @@ class Input extends Component {
     const { model } = this.props
 
     return [
-      <div className="field">
+      <div className="field" key="text">
         <textarea
           className="textarea"
           placeholder="번역할 문장을 입력하세요!"
@@ -16,7 +16,7 @@ class Input extends Component {
         />
       </div>,
 
-      <div className="field">
+      <div className="field" key="button">
         <button
           className={'button is-primary' + (model.status === 'pending' ? ' is-loading' : '')}
           disabled={model.status === 'pending'}

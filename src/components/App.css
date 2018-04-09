@@ -5,3 +5,16 @@
 .section + .section {
   padding-top: 0.25rem;
 }
+
+body, #app {
+  height: 100vh;
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}

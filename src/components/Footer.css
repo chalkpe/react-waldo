@@ -1,0 +1,12 @@
+.footer {
+  padding-bottom: 3rem;
+}
+
+.footer a {
+  color: #1a1a1a;
+}
+
+.footer a + a::before {
+  content: '·';
+  margin: 0.5em;
+}
