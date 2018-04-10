@@ -1,5 +1,4 @@
-import tr from './translate'
-import { langs } from './langs'
+import { tr, langs } from '.'
 
 export default async token => {
   const language = langs[Math.floor(Math.random() * langs.length)]

@@ -2,7 +2,7 @@ import './Result.css'
 
 import React, { Component } from 'react'
 import { inject, observer } from 'mobx-react'
-import { langNames } from '../api/langs'
+import { langNames } from '../api'
 
 @inject('model') @observer
 class Result extends Component {

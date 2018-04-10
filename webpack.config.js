@@ -30,5 +30,7 @@ module.exports = {
     new MiniCssExtractPlugin({ filename: '[name].css' }),
     new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin()
-  ]
+  ],
+
+  performance: { hints: false }
 }
